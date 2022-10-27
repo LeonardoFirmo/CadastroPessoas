@@ -8,19 +8,9 @@ namespace UC12_SA2
     public abstract class Pessoa
     {
         public string nome {get;set;}
+        public Endereco endereco { get; set; }
 
-        public string endereco { get; set; }
-        
-        public bool enderecoComercial { get; set; }
-
-
-        public void PagarImposto(){
-            
-        }
-        
-        
-        
-        
+        public abstract void PagarImposto();
         
     }
 }

@@ -9,5 +9,10 @@ namespace UC12_SA2
     {
         public int cnpj { get;set;}
         public string razaoSocial {get;set;}
+
+         public override void PagarImposto(float salario)
+        {
+           
+        }
     }
 }
