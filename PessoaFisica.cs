@@ -7,7 +7,7 @@ namespace UC12_SA2
 {
     public class PessoaFisica : Pessoa
     {
-        public string cpf {get; set;}
+        public string? cpf {get; set;}
 
         public DateTime dataNascimento {get; set;}
 
