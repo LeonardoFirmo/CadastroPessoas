@@ -7,12 +7,21 @@ namespace UC12_SA2
 {
     public class PessoaJuridica : Pessoa
     {
-        public int cnpj { get;set;}
-        public string razaoSocial {get;set;}
+        public string? cnpj { get;set;}
+        public string? razaoSocial {get;set;}
 
          public override void PagarImposto(float salario)
-        {
-           
+        {   
+        
+        }
+
+        public bool ValidarCNPJ(string cnpj){
+
+            if(cnpj.Length == 14 && cnpj.Substring(cnpj.Length -6, 4) == "0001"  ){
+                return true;
+            }else{
+                return false;
+            }
         }
     }
 }
