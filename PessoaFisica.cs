@@ -11,9 +11,17 @@ namespace UC12_SA2
 
         public DateTime dataNascimento {get; set;}
 
-        public override void PagarImposto(float salario)
+        public override float PagarImposto(float salario)
         {
-           
+           if(salario <= 1500){
+                return 0;
+
+           }else if(salario > 1500 && salario <= 5000){
+                return (salario / 100) *3;
+
+           }else{
+                return (salario / 100) *5;
+           }
         }
 
         public bool validarDataNascimento(DateTime dataNasc){

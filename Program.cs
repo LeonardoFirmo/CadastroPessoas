@@ -49,6 +49,7 @@ namespace UC12_SA2
                     novapf.dataNascimento = new DateTime(2000, 01, 23);
                     novapf.nome= "Pessoa física";
                     novapf.endereco = endPf;
+                    novapf.salario = 7000;
 
 
                     bool idadeValida = novapf.validarDataNascimento(novapf.dataNascimento);
@@ -74,6 +75,7 @@ namespace UC12_SA2
                     novapj.cnpj= "12345678900001";
                     novapj.razaoSocial = "Pessoa juridica RS";
                     novapj.endereco = endPj;
+                    novapj.salario = 8000;
                     
                     break;
 

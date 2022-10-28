@@ -10,7 +10,9 @@ namespace UC12_SA2
         public string? nome {get;set;}
         public Endereco? endereco { get; set; }
 
-        public abstract void PagarImposto(float salario);
+        public float salario {get;set;}
+
+        public abstract float PagarImposto(float salario);
         
     }
 }

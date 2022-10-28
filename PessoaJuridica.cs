@@ -10,9 +10,18 @@ namespace UC12_SA2
         public string? cnpj { get;set;}
         public string? razaoSocial {get;set;}
 
-         public override void PagarImposto(float salario)
+         public override float PagarImposto(float salario)
         {   
-        
+            if(salario <= 5000){
+                return  salario * .06f;
+
+            }else if(salario > 5000 && salario <= 10000){
+
+                return salario * .08f;
+
+            }else{
+                return salario * .10f;
+            }
         }
 
         public bool ValidarCNPJ(string cnpj){
