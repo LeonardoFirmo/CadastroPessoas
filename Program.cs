@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace UC12_SA2
 {
@@ -7,6 +8,8 @@ namespace UC12_SA2
     {
         static void Main(string[] args)
         {
+
+            List<PessoaFisica> listaPf = new List<PessoaFisica>();
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.BackgroundColor = ConsoleColor.White;    
@@ -25,9 +28,17 @@ namespace UC12_SA2
             Console.WriteLine(@$"
 ========================================================
 |            Escolha uma das opções abaixo             |
-|              1 - Pessoa Física                       |
-|              2 - Pessoa Jurídica                     |
-|              0 - Sair                                |
+|                  PESSOA FÍSICA                       |
+|              1 - Cadastrar Pessoa Física             |
+|              2 - Listar Pessoa Física                |
+|              3 - Remover Pessoa Física               |
+|                                                      |
+|                  PESSOA JURÍDICA                     |
+|              4 - Cadastrar Pessoa Jurídica           |
+|              5 - Listar Pessoa Jurídica              |
+|              6 - Remover Pessoa Jurídica             |
+|                                                      |
+|              0- Sair                                 |
 |                                                      |
 ========================================================
 ");
@@ -38,17 +49,43 @@ namespace UC12_SA2
                 case "1":
                     
                     Endereco endPf = new Endereco();
-                    endPf.logradouro = "Rua Akira";
-                    endPf.numero = 100;
-                    endPf.complemento="Próximo a tokyo";
-                    endPf.enderecoComercial = false;
+                    Console.WriteLine($"Digite seu logradouro");
+                    endPf.logradouro = Console.ReadLine();
+
+                    Console.WriteLine($"Digite o número");
+                    endPf.numero = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine($"Digite o complemento (aperte ENTER para vazio)");
+                    endPf.complemento = Console.ReadLine();
+
+
+                    Console.WriteLine($"Este endereço é comercial? S/N");
+                    string endComercial = Console.ReadLine().ToUpper();
+
+                    if (endComercial == "S"){
+                        endPf.enderecoComercial = true;
+                    }else{
+                        endPf.enderecoComercial = false;
+                    }
+
+                    // endPf.logradouro = "Rua Akira";
+                    // endPf.numero = 100;
+                    // endPf.complemento="Próximo a tokyo";
+                    // endPf.enderecoComercial = false;
 
 
                     PessoaFisica novapf = new PessoaFisica();
-                    novapf.cpf= "12354546";
-                    novapf.dataNascimento = new DateTime(2000, 01, 23);
-                    novapf.nome= "Pessoa física";
-                    novapf.endereco = endPf;
+                    Console.WriteLine($"Digite seu CPF (Somente Números)");
+                    novapf.cpf= Console.ReadLine();
+
+                    Console.WriteLine($"Digite seu nome");
+                    novapf.nome= Console.ReadLine();
+
+                    // novapf.endereco = Console.ReadLine();
+
+                    Console.WriteLine($"Digite sua data de nascimento");
+                    novapf.dataNascimento = DateTime.Parse(Console.ReadLine());
+                   
                     novapf.salario = 7000;
 
 
@@ -56,14 +93,41 @@ namespace UC12_SA2
                     Console.WriteLine(idadeValida);
 
                     if(idadeValida == true){
+                       
+
                         System.Console.WriteLine($"Cadastro aprovado");
+                        listaPf.Add(novapf);
+                        Console.WriteLine(novapf.PagarImposto(novapf.salario));
                     }else{
                         System.Console.WriteLine($"Cadastro reprovado");
                     }
                     break;
 
-
                 case "2":
+
+                    foreach (var cadaItem in listaPf)
+                    {
+                        Console.WriteLine($"{cadaItem.nome}, {cadaItem.cpf}, {cadaItem.dataNascimento}");
+                    }
+
+                    break;
+                
+                case "3":
+
+                    Console.WriteLine($"Digite o CPF que deseja remover");
+                    string cpfProcurado = Console.ReadLine();
+
+                    PessoaFisica pessoaEncontrada = listaPf.Find(cadaItem => cadaItem.cpf == cpfProcurado);
+                    if(pessoaEncontrada != null){
+                        listaPf.Remove(pessoaEncontrada);
+                        Console.WriteLine($"Cadastro Removido");
+                    }else{
+                        Console.WriteLine($"CPF não encontrado");
+                    }
+                break;
+
+
+                case "4":
                         
                     Endereco endPj = new Endereco();
                     endPj.logradouro = "Rua PJ";
