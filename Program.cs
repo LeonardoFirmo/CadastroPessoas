@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Collections.Generic;
+using System.IO;
 
 namespace UC12_SA2
 {
@@ -48,6 +49,26 @@ namespace UC12_SA2
             switch (opcao){
                 case "1":
                     
+                    PessoaFisica novapf = new PessoaFisica();
+                  
+
+                    Console.WriteLine($"Digite seu nome");
+                    novapf.nome= Console.ReadLine();
+
+                    Console.WriteLine($"Digite seu CPF (Somente Números)");
+                    novapf.cpf= Console.ReadLine();
+
+                    Console.WriteLine($"Digite sua data de nascimento");
+                    novapf.dataNascimento = DateTime.Parse(Console.ReadLine());
+                   
+                    novapf.salario = 7000;
+
+
+                    bool idadeValida = novapf.validarDataNascimento(novapf.dataNascimento);
+                    Console.WriteLine(idadeValida);
+
+                    if(idadeValida == true){
+
                     Endereco endPf = new Endereco();
                     Console.WriteLine($"Digite seu logradouro");
                     endPf.logradouro = Console.ReadLine();
@@ -68,36 +89,22 @@ namespace UC12_SA2
                         endPf.enderecoComercial = false;
                     }
 
-                    // endPf.logradouro = "Rua Akira";
-                    // endPf.numero = 100;
-                    // endPf.complemento="Próximo a tokyo";
-                    // endPf.enderecoComercial = false;
-
-
-                    PessoaFisica novapf = new PessoaFisica();
-                    Console.WriteLine($"Digite seu CPF (Somente Números)");
-                    novapf.cpf= Console.ReadLine();
-
-                    Console.WriteLine($"Digite seu nome");
-                    novapf.nome= Console.ReadLine();
-
-                    // novapf.endereco = Console.ReadLine();
-
-                    Console.WriteLine($"Digite sua data de nascimento");
-                    novapf.dataNascimento = DateTime.Parse(Console.ReadLine());
-                   
-                    novapf.salario = 7000;
-
-
-                    bool idadeValida = novapf.validarDataNascimento(novapf.dataNascimento);
-                    Console.WriteLine(idadeValida);
-
-                    if(idadeValida == true){
                        
 
                         System.Console.WriteLine($"Cadastro aprovado");
                         listaPf.Add(novapf);
                         Console.WriteLine(novapf.PagarImposto(novapf.salario));
+
+                        StreamWriter npf = new StreamWriter("C:\\PROJETOS-SENAI\\UC12_SA2\\"+ novapf.nome +".txt");
+                        npf.WriteLine(
+                            "Nome:" + novapf.nome + 
+                            " CPF:" + novapf.cpf + 
+                            " Data de nascimento:" + novapf.dataNascimento +
+                            " Rua:" + endPf.logradouro + 
+                            " Num:" + endPf.numero
+                            );
+                        npf.Close();
+
                     }else{
                         System.Console.WriteLine($"Cadastro reprovado");
                     }
@@ -159,20 +166,6 @@ namespace UC12_SA2
 
         
             
-       
-
-       
-
-
-
-
-
-
-
-
-
-
-
 
 
 
